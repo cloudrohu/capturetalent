@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About | {{ site_setting.site_name }}{% endblock %}
+{% block content %}
+{% if about %}
+<br>
+<br>
+
+<style>
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 200px;
+  }
+
+  .faq-item.active .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-icon {
+    transition: transform 0.3s ease;
+  }
+</style>
+
+
+<!-- HERO SECTION -->
+<section class="w-full">
+  <div class="w-full py-20 flex items-center justify-center bg-gradient-to-b from-[#f4a261] via-[#f79d3c] to-[#f28c28]">
+    <h1 class="text-white text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[8px] uppercase">
+      Capture Talent
+    </h1>
+  </div>
+  <div class="w-full h-8 bg-[#e5e5e5]"></div>
+</section>
+
+
+
+ <!-- ABOUT -->
+<section class="w-full bg-[#efefef] py-20">
+
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Title Box -->
+    <div class="flex justify-center mb-14">
+      <div class="bg-[#f28c28] px-8 py-3">
+        <h2 class="text-white text-2xl md:text-3xl tracking-[6px] uppercase font-semibold">
+          About Capture Talent
+        </h2>
+      </div>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="grid md:grid-cols-2 gap-14 items-center">
+
+      <!-- Left Image -->
+      <div>
+        <img src="https://capturetalent.in/uploads/about_img/1765474007_f18b2f4bd01ea2bacc10.webp" alt="About {{ site_setting.site_name }}" class="rounded-xl shadow-lg w-full">
+      </div>
+
+      <!-- Right Text -->
+      <div>
+        <p class="text-gray-800 text-xl active leading-loose tracking-[2.5px] font-semibold">
+          Capture Talent is a one-stop platform that brings together actors,
+          actresses, models, creatives, and crew members—all in one place.
+          It streamlines the process of discovering and collaborating with
+          skilled professionals. Whether you're casting for a project or
+          seeking new opportunities, Capture Talent connects you directly
+          to the right people.
+        </p>  
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- ABOUT END-->
+
+
+<!-- MISSION & VISION -->
+<section class="py-16 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12">Our Mission & Vision</h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white p-8 rounded-2xl shadow-xl">
+        <h3 class="text-2xl font-semibold mb-4">Our Mission</h3>
+        <p class="text-gray-600">{{ about.mission_text }}</p>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl shadow-xl">
+        <h3 class="text-2xl font-semibold mb-4">Our Vision</h3>
+        <p class="text-gray-600">{{ about.vision_text }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- MISSION & VISION END-->   
+
+
+<!-- FAQ SECTION -->
+<section class="py-20 bg-gray-50" id="faqs">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-gray-600 mt-3">
+        Everything you need to know before getting started
+      </p>
+    </div>
+
+    <!-- SCROLLABLE FAQ BOX -->
+    <div class="bg-white rounded-2xl shadow-lg border max-h-[420px] overflow-y-auto faq-scroll">
+
+      <div class="p-4 space-y-4">
+
+        {% for rs in faq %}
+          
+        <!-- FAQ Item -->
+        <div class="faq-item border rounded-xl">
+          <button class="faq-question w-full flex justify-between items-center p-3 text-left">
+            <span class="font-semibold text-gray-800">
+              {{rs.question}}
+            </span>
+            <span class="faq-icon text-2xl">+</span>
+          </button>
+          <div class="faq-answer px-3 text-gray-600">
+            <p class="pb-3">
+              {{rs.answer}}
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+
+
+
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- FAQ SECTION END-->
+
+
+
+
+<!-- CTA -->
+{% if about.cta_text %}
+<section class="py-2 px-2 lg:py-5 text-center">
+  <a href="{{ about.cta_link }}"
+     class="inline-block px-4 py-4 bg-red-700 hover:bg-red-800 text-white rounded-xl font-semibold">
+    {{ about.cta_text }}
+  </a>
+</section>
+{% endif %}
+
+{% else %}
+<p class="text-center py-20 text-gray-500">
+  About page content not available.
+</p>
+{% endif %}
+
+
+<script>
+  document.querySelectorAll(".faq-question").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".faq-item");
+
+      // Close others
+      document.querySelectorAll(".faq-item").forEach((el) => {
+        if (el !== item) el.classList.remove("active");
+      });
+
+      // Toggle current
+      item.classList.toggle("active");
+
+      // Smooth scroll into view
+      setTimeout(() => {
+        item.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest"
+        });
+      }, 150);
+    });
+  });
+</script>
+
+
+
+{% endblock %}

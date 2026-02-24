@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Events{% endblock %}
+{% block content %}
+
+<br>
+<br>
+<br><br>
+<!-- EVENTS HERO START -->
+<section class="relative bg-cover bg-center bg-no-repeat bg-red-600">
+  <div class="absolute inset-0"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 py-28 text-center text-white">
+    <h1 class="text-4xl md:text-5xl font-extrabold">
+      Events & Competitions
+    </h1>
+    <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto text-gray-200">
+      Join our upcoming sports, training programs and competitions.
+      Together we empower athletes.
+    </p>
+
+    <div class="mt-8">
+      <a href="#upcoming" 
+         class="px-8 py-3 border bg-red-600 hover:bg-red-400 rounded-lg text-lg font-semibold">
+        See Upcoming Events
+      </a>
+    </div>
+  </div>
+</section>
+<!-- EVENTS HERO END -->
+
+<!-- EVENTS CARD START : DESIGN 03 -->
+<section class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900">
+        Upcoming Events
+      </h2>
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">
+        Stay updated with our upcoming sports events and community initiatives
+      </p>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+
+      {% for rs in event %}
+
+      <!-- EVENT CARD -->
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition duration-300 overflow-hidden">
+
+        <!-- DATE STRIP -->
+        <div class="flex justify-between items-center px-6 py-4 bg-gray-100 border-b">
+          <span class="text-sm font-semibold text-gray-700">
+            📅 {{ rs.date|date:"d M Y" }}
+          </span>
+          <span class="text-sm text-gray-500">
+            ⏰ {{ rs.date|date:"h:i A" }}
+          </span>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="px-6 py-6 space-y-5">
+
+          <!-- Title -->
+          <h3 class="text-2xl font-bold text-gray-900 leading-snug">
+            {{ rs.title }}
+          </h3>
+
+          <!-- Location -->
+          {% if rs.location %}
+          <p class="text-sm text-gray-600 flex items-center gap-2">
+            📍 {{ rs.location }}
+          </p>
+          {% endif %}
+
+          <!-- Divider -->
+          <div class="h-px w-full bg-gray-300"></div>
+
+          <!-- Description -->
+          <p class="text-sm text-gray-600 leading-relaxed line-clamp-4">
+            {{ rs.description }}
+          </p>
+
+        </div>
+
+        <!-- ACTION AREA (SEPARATE FEEL) -->
+        <div class="px-6 py-5 bg-white border-t flex flex-col gap-3">
+
+          <a href="/volunteer/"
+             class="w-full text-center text-sm font-semibold px-5 py-3 rounded-lg
+                    border border-gray-300 text-gray-700 hover:bg-gray-100 transition">
+            Become a Volunteer
+          </a>
+
+          <a href="/donate/"
+             class="w-full text-center text-sm font-semibold px-5 py-3 rounded-lg
+                    bg-red-600 text-white hover:bg-red-700 transition">
+            Donate for This Event
+          </a>
+
+        </div>
+
+      </div>
+
+      {% empty %}
+      <p class="col-span-3 text-center text-gray-500 text-lg">
+        No upcoming events available.
+      </p>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+<!-- EVENTS CARD END : DESIGN 03 -->
+
+
+
+
+<!-- EVENT GALLERY START -->
+<section class="py-16 bg-gray-100">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">
+      Event Gallery
+    </h2>
+
+    <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+      Photos from our previous sports meets, competitions and training events.
+    </p>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+
+
+      {% for rs in gallery %}
+        
+      <!-- Image -->
+      <div class="relative group overflow-hidden rounded-xl shadow-lg">
+        <img src="{{rs.image.url}}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-sm font-semibold">
+          View Photo
+        </div>
+      </div>
+
+      {% endfor %}
+
+
+
+    </div>
+
+  </div>
+</section>
+<!-- EVENT GALLERY END -->
+
+<!-- VOLUNTEER CTA START -->
+<section class="relative py-20 bg-center bg-cover" style="background-image:url('https://images.unsplash.com/photo-1520975922284-5c5f8b7c117e?auto=format&fit=crop&w=900&q=60');">
+
+  <!-- overlay -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <div class="relative max-w-5xl mx-auto px-6 text-center text-white">
+      
+    <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">
+      Become a Volunteer for our Next Event
+    </h2>
+
+    <p class="text-lg md:text-xl text-gray-200 mt-4 max-w-3xl mx-auto">
+      Join us in supporting athletes, helping in event organization, and making every sports event memorable.
+    </p>
+
+    <a href="volunteer.html"
+       class="inline-block mt-8 px-10 py-3 text-lg font-semibold bg-red-600 hover:bg-red-700 rounded-full shadow-xl">
+      Join as a Volunteer
+    </a>
+
+  </div>
+</section>
+<!-- VOLUNTEER CTA END -->
+
+{% endblock %}
