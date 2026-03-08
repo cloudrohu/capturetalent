@@ -93,6 +93,7 @@ class Portfolio(View):
 
         return render(request, self.template_name, context)
 
+
 class ContactView(View):
     def get(self, request):
         return render(request, 'contact.html', {'site_setting': SiteSetting.objects.last()})

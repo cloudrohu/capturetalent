@@ -9,9 +9,10 @@ from django.contrib.sitemaps.views import sitemap
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),   # provides login, logout, password reset views
-    path('', include('home.urls')),   
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('home.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('project/', include('projects.urls')),
 
 ]
 if settings.DEBUG:

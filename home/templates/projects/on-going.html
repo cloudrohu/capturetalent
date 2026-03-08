@@ -3,8 +3,6 @@
 {% block title %}{{ site_setting.site_name }} | On Going Project{% endblock %}
 {% block content %}
 
-<script src="https://cdn.tailwindcss.com"></script>
-
 
 <!-- PAGE HERO -->
 <section class="bg-gray-900 text-white py-20 text-center">
@@ -19,37 +17,38 @@
     </p>
 
 </section>
-
-
+<!-- PAGE HERO END -->
 
 <!-- PROJECT LIST -->
+{% if projects %}
 <section class="py-16 bg-gray-50">
 
     <div class="max-w-7xl mx-auto px-6">
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
 
+            {% for project in projects %}
+
             <!-- PROJECT CARD -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
 
-                <img src="{% static 'images/project1.jpg' %}" class="w-full h-56 object-cover">
+                <img src="{{ project.image.url }}" class="w-full h-56 object-cover">
 
                 <div class="p-6">
 
                     <span class="text-sm text-blue-600 font-semibold">
-                        Web Development
+                        {{ project.category.name }}
                     </span>
 
                     <h3 class="text-xl font-bold mt-2">
-                        Talent Hiring Platform
+                        {{ project.title }}
                     </h3>
 
                     <p class="text-gray-600 mt-3 text-sm">
-                        A modern hiring platform designed to connect companies
-                        with top creative and technical talent.
+                        {{ project.description|truncatewords:18 }}
                     </p>
 
-                    <a href="#" class="inline-block mt-5 text-blue-600 font-semibold hover:underline">
+                    <a href="javascript:void(0)" class="openProject text-blue-600 font-semibold" data-title="{{ project.title }}" data-category="{{ project.category.name }}" data-desc="{{ project.description }}" data-image="{{ project.image.url }}" data-location="{{ project.location }}" data-role="{{ project.role }}" data-budget="{{ project.budget }}" data-deadline="{{ project.deadline }}" data-type="{{ project.project_type }}" data-production="{{ project.production }}">
                         View Project →
                     </a>
 
@@ -57,67 +56,129 @@
 
             </div>
 
-            <!-- PROJECT CARD -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
-
-                <img src="{% static 'images/project2.jpg' %}" class="w-full h-56 object-cover">
-
-                <div class="p-6">
-
-                    <span class="text-sm text-purple-600 font-semibold">
-                        Branding
-                    </span>
-
-                    <h3 class="text-xl font-bold mt-2">
-                        Creative Portfolio Builder
-                    </h3>
-
-                    <p class="text-gray-600 mt-3 text-sm">
-                        A digital platform helping designers and developers
-                        showcase their work professionally.
-                    </p>
-
-                    <a href="#" class="inline-block mt-5 text-purple-600 font-semibold hover:underline">
-                        View Project →
-                    </a>
-
-                </div>
-
-            </div>
-
-            <!-- PROJECT CARD -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
-
-                <img src="{% static 'images/project3.jpg' %}" class="w-full h-56 object-cover">
-
-                <div class="p-6">
-
-                    <span class="text-sm text-green-600 font-semibold">
-                        Marketing
-                    </span>
-
-                    <h3 class="text-xl font-bold mt-2">
-                        Digital Campaign System
-                    </h3>
-
-                    <p class="text-gray-600 mt-3 text-sm">
-                        A smart campaign management system designed to
-                        automate marketing workflows.
-                    </p>
-
-                    <a href="#" class="inline-block mt-5 text-green-600 font-semibold hover:underline">
-                        View Project →
-                    </a>
-
-                </div>
-
-            </div>
+            {% endfor %}
 
         </div>
 
     </div>
 
 </section>
+{% else %}
+<div class="text-center py-20">
+    <h2 class="text-2xl font-semibold text-gray-500">
+        No Ongoing Projects Available
+    </h2>
+</div>
+{% endif %}
+<!-- PROJECT LIST END-->
 
+
+
+<!-- PROJECT POPUP -->
+<div id="projectModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
+
+    <div class="bg-white max-w-3xl w-full rounded-xl shadow-xl overflow-hidden relative">
+
+        <!-- CLOSE -->
+        <button id="closeModal" class="absolute top-4 right-4 text-gray-600 text-2xl">
+        ✕
+        </button>
+
+        <!-- IMAGE -->
+        <img id="modalImage" class="w-full h-64 object-cover">
+
+        <div class="p-6">
+
+            <!-- CATEGORY -->
+            <span id="modalCategory" class="text-sm text-blue-600 font-semibold"></span>
+
+            <!-- TITLE -->
+            <h3 id="modalTitle" class="text-2xl font-bold mt-2"></h3>
+
+            <!-- DESCRIPTION -->
+            <p id="modalDesc" class="text-gray-600 mt-3"></p>
+
+            <!-- EXTRA DETAILS -->
+            <div class="grid grid-cols-2 gap-4 mt-6 text-sm">
+
+                <div>
+                    <strong>Location:</strong>
+                    <span id="modalLocation"></span>
+                </div>
+
+                <div>
+                    <strong>Role Required:</strong>
+                    <span id="modalRole"></span>
+                </div>
+
+                <div>
+                    <strong>Budget:</strong>
+                    <span id="modalBudget"></span>
+                </div>
+
+                <div>
+                    <strong>Deadline:</strong>
+                    <span id="modalDeadline"></span>
+                </div>
+
+                <div>
+                    <strong>Project Type:</strong>
+                    <span id="modalType"></span>
+                </div>
+
+                <div>
+                    <strong>Production:</strong>
+                    <span id="modalProduction"></span>
+                </div>
+
+            </div>
+
+            <!-- APPLY BUTTON -->
+            <a id="modalLink" class="inline-block mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                Apply Now
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- PROJECT POPUP END -->
+
+
+
+<script>
+
+    const modal = document.getElementById("projectModal")
+
+    document.querySelectorAll(".openProject").forEach(btn => {
+
+        btn.addEventListener("click", function(){
+
+        document.getElementById("modalTitle").innerText = this.dataset.title
+        document.getElementById("modalCategory").innerText = this.dataset.category
+        document.getElementById("modalDesc").innerText = this.dataset.desc
+        document.getElementById("modalImage").src = this.dataset.image
+
+        document.getElementById("modalLocation").innerText = this.dataset.location
+        document.getElementById("modalRole").innerText = this.dataset.role
+        document.getElementById("modalBudget").innerText = this.dataset.budget
+        document.getElementById("modalDeadline").innerText = this.dataset.deadline
+        document.getElementById("modalType").innerText = this.dataset.type
+        document.getElementById("modalProduction").innerText = this.dataset.production
+
+        modal.classList.remove("hidden")
+        modal.classList.add("flex")
+
+        })
+
+    })
+
+    document.getElementById("closeModal").onclick = () =>{
+        modal.classList.add("hidden")
+        modal.classList.remove("flex")
+    }
+
+</script>
 
 {% endblock %}
