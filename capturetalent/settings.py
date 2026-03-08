@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'projects',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -68,7 +69,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'home.context_processors.global_vars',   # ✔ FINAL FIXED
             ],
         },
     },

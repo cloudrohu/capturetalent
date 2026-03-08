@@ -18,35 +18,6 @@
 </section>
 <!-- CONTACT HERO END-->
 
-<!-- CONTACT INFO SECTION -->
- <section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-
-    <!-- PHONE -->
-    <div class="text-center bg-gray-50 p-8 rounded-xl shadow hover:shadow-xl transition">
-      <i class="fa-solid fa-phone text-red-600 text-3xl"></i>
-      <h3 class="text-xl font-bold mt-4">Phone</h3>
-      <p class="text-gray-600 mt-2">+91 {{site_setting.phone}}</p>
-    </div>
-
-    <!-- EMAIL -->
-    <div class="text-center bg-gray-50 p-8 rounded-xl shadow hover:shadow-xl transition">
-      <i class="fa-solid fa-envelope text-red-600 text-3xl"></i>
-      <h3 class="text-xl font-bold mt-4">Email</h3>
-      <p class="text-gray-600 mt-2">{{site_setting.email}}</p>
-    </div>
-
-    <!-- LOCATION -->
-    <div class="text-center bg-gray-50 p-8 rounded-xl shadow hover:shadow-xl transition">
-      <i class="fa-solid fa-location-dot text-red-600 text-3xl"></i>
-      <h3 class="text-xl font-bold mt-4">Location</h3>
-      <p class="text-gray-600 mt-2">{{site_setting.address}}</p>
-    </div>
-
-  </div>
-</section>
-<!-- CONTACT INFO SECTION END HERE -->
-
 <!-- CONTACT FORM SECTION START HERE -->
   <section class="min-h-screen py-16">
     <div class="max-w-6xl mx-auto px-4 lg:px-6">
@@ -175,14 +146,7 @@
                   <label class="block text-xs font-medium text-slate-600 mb-1">
                     Full Name
                   </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm
-                          outline-none focus:border-indigo-500 focus:bg-white
-                          focus:ring-2 focus:ring-indigo-100"
-                    placeholder="Enter your name">
+                  <input type="text" name="name" required class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-100" placeholder="Enter your name">
                 </div>
 
                 <!-- Phone -->
@@ -190,13 +154,7 @@
                   <label class="block text-xs font-medium text-slate-600 mb-1">
                     Phone Number
                   </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm
-                          outline-none focus:border-indigo-500 focus:bg-white
-                          focus:ring-2 focus:ring-indigo-100"
-                    placeholder="98765 43210">
+                  <input type="tel" name="phone" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-100" placeholder="98765 43210">
                 </div>
 
               </div>
@@ -206,14 +164,7 @@
                 <label class="block text-xs font-medium text-slate-600 mb-1">
                   Email Address
                 </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm
-                        outline-none focus:border-indigo-500 focus:bg-white
-                        focus:ring-2 focus:ring-indigo-100"
-                  placeholder="you@example.com">
+                <input type="email" name="email" required class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-100" placeholder="you@example.com">
               </div>
 
               <!-- Subject -->
@@ -221,13 +172,7 @@
                 <label class="block text-xs font-medium text-slate-600 mb-1">
                   Subject
                 </label>
-                <input
-                  type="text"
-                  name="subject"
-                  class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm
-                        outline-none focus:border-indigo-500 focus:bg-white
-                        focus:ring-2 focus:ring-indigo-100"
-                  placeholder="How can we help you?">
+                <input type="text" name="subject" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-100" placeholder="How can we help you?">
               </div>
 
               <!-- Message -->
@@ -235,28 +180,17 @@
                 <label class="block text-xs font-medium text-slate-600 mb-1">
                   Message
                 </label>
-                <textarea
-                  name="message"
-                  rows="4"
-                  required
-                  class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm
-                        outline-none focus:border-indigo-500 focus:bg-white
-                        focus:ring-2 focus:ring-indigo-100 resize-none"
-                  placeholder="Write your message here..."></textarea>
+                <textarea name="message" rows="4" required class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-100 resize-none" placeholder="Write your message here..."></textarea>
               </div>
 
               <!-- Consent + Button -->
               <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-2">
                 <label class="inline-flex items-start gap-2 text-xs text-slate-500">
-                  <input required type="checkbox"
-                        class="mt-0.5 h-4 w-4 border border-gray-400 rounded-sm appearance-auto">
-                  I provide my informed consent for Lions Special Olympics to reach out to me.
+                  <input required type="checkbox" checked class="mt-0.5 h-4 w-4 border border-gray-400 rounded-sm appearance-auto">
+                  I provide my informed consent for <br> {{site_setting.site_name}} to reach out to me.
                 </label>
 
-                <button type="submit"
-                  class="w-full md:w-auto inline-flex items-center justify-center rounded-xl
-                        bg-indigo-600 px-7 py-3 text-sm font-semibold text-white
-                        shadow hover:bg-indigo-700 transition-all duration-200">
+                <button type="submit" class="w-full md:w-auto inline-flex items-center justify-center rounded-xl bg-indigo-600 px-7 py-3 text-sm font-semibold text-white shadow hover:bg-indigo-700 transition-all duration-200">
                   Send Message
                 </button>
               </div>

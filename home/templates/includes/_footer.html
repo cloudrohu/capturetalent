@@ -1,94 +1,176 @@
-{% load static %}
+<footer class="footer mt-5">
+    <div class="footer-container">
 
-<!-- FOOTER START HERE -->
-<footer class="bg-[#2D2D2D] text-white py-12 px-6">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+        <!-- Company Info -->
+        <div class="footer-box">
+            <h2 class="footer-logo">
+                {{ site_setting.site_name }}
+            </h2>
 
-    <!-- LOGO + TEXT -->
-    <div>
-      <h2 class="text-2xl font-bold tracking-wider">{{site_setting.site_name}}</h2>
-      <p class="mt-3 text-gray-300 text-sm leading-6">
-        {{site_setting.tagline|default:"Building a world where every individual with intellectual disability has a chance to shine, participate and succeed."}}
-      </p>
+            <p>
+                {{ site_setting.tagline }}
+            </p>
 
-      <!-- SOCIAL -->
-      <div class="flex gap-4 mt-5 items-center">
+            <div class="social-icons">
+                {% if site_setting.facebook %}
+                <a href="{{ site_setting.facebook }}" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                {% endif %}
 
-        <!-- Facebook -->
-        <a href="{{ site_setting.facebook }}" target="_blank"
-          class="text-2xl text-[#1877F2] hover:scale-110 transition">
-          <i class="fa-brands fa-facebook"></i>
-        </a>
+                {% if site_setting.instagram %}
+                <a href="{{ site_setting.instagram }}" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                {% endif %}
 
-        <!-- YouTube -->
-        <a href="{{ site_setting.youtube }}" target="_blank"
-          class="text-2xl text-[#FF0000] hover:scale-110 transition">
-          <i class="fa-brands fa-youtube"></i>
-        </a>
+                {% if site_setting.linkdin %}
+                <a href="{{ site_setting.linkdin }}" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                {% endif %}
 
-        <!-- LinkedIn -->
-        <a href="{{ site_setting.linkdin }}" target="_blank"
-          class="text-2xl text-[#0A66C2] hover:scale-110 transition">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
-
-        <!-- Instagram -->
-        <a href="{{ site_setting.instagram }}" target="_blank"
-          class="text-2xl text-pink-500 hover:scale-110 transition">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- QUICK LINKS -->
-    <div>
-      <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
-      <ul class="space-y-2 text-gray-300 text-sm">
-        <li><a href="{% url 'home:about' %}" class="hover:text-white">About Us</a></li>
-        <li><a href="{% url 'home:partners' %}" class="hover:text-white">Partner</a></li>
-        <li><a href="{% url 'home:volunteer' %}" class="hover:text-white">Volunteer</a></li>
-        <li><a href="{% url 'home:event_list' %}" class="hover:text-white">Events</a></li>
-      </ul>
-    </div>
-
-    <!-- CONTACT -->
-    <div>
-      <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
-      <ul class="space-y-2 text-gray-300 text-sm">
-        <li><i class="fa-solid fa-phone"></i> <a href="tel:{{site_setting.phone}}">+91 {{site_setting.phone}}</a></li>
-        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:{{site_setting.email}}">{{site_setting.email}}</a></li>
-        <li><i class="fa-solid fa-location-dot"></i> {{site_setting.address}}</li>
-      </ul>
-    </div>
-
-    <!-- DONATE -->
-    <div>
-      <h3 class="text-xl font-semibold mb-4">Support The Mission</h3>
-      <div class="p-2">
-        <div class="p-2 bg-white rounded-xl shadow-sm inline-block">
-          <img src="{{site_setting.payment_qr.url}}" class="h-30 rounded-sm">
+                {% if site_setting.youtube %}
+                <a href="{{ site_setting.youtube }}" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                {% endif %}
+            </div>
         </div>
-      </div>
-    </div>  
-  </div>
 
-  <!-- BOTTOM BAR -->
-  <div class="mt-10 pt-6 border-t border-gray-600 text-center text-sm text-gray-400">
+        <!-- Quick Links -->
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="/"><i class="fa-solid fa-angle-right"></i> Home</a></li>
+                <li><a href="{% url 'home:about' %}"><i class="fa-solid fa-angle-right"></i> About</a></li>
+                <li><a href="/"><i class="fa-solid fa-angle-right"></i> Services</a></li>
+                <li><a href="/"><i class="fa-solid fa-angle-right"></i> Projects</a></li>
+                <li><a href=""><i class="fa-solid fa-angle-right"></i> Contact</a></li>
+            </ul>
+        </div>
 
-    © {{ site_setting.copyright }}
+        <!-- Contact Info -->
+        <div class="footer-box">
+            <h3>Contact Us</h3>
 
-    <span class="block mt-2 text-sm text-gray-400">
-      Designed & Developed by 
-      <span class="font-semibold text-[#ecccec]">
-        Findexors
-      </span>
-    </span>
+            {% if site_setting.address %}
+            <p class="p-2">
+                <i class="fa-solid fa-location-dot"></i>
+                {{ site_setting.address }}
+            </p>
+            {% endif %}
 
+            {% if site_setting.phone %}
+            <p class="p-2">
+                <i class="fa-solid fa-phone"></i>
+                {{ site_setting.phone }}
+            </p>
+            {% endif %}
 
-  </div>
+            {% if site_setting.email %}
+            <p class="p-2">
+                <i class="fa-solid fa-envelope"></i>
+                {{ site_setting.email }}
+            </p>
+            {% endif %}
+        </div>
 
+    </div>
 
+    <div class="footer-bottom">
+        <p>
+            © {{ site_setting.copyright }} 
+        </p>
+    </div>
 </footer>
-<!-- FOOTER START HERE -->
+
+<style>
+.footer {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+    padding: 60px 20px 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-box h2,
+.footer-box h3 {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.footer-logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #38bdf8;
+}
+
+.footer-box p {
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+
+.footer-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-box ul li {
+    margin-bottom: 12px;
+    color: #cbd5e1;
+    transition: 0.3s;
+}
+
+.footer-box ul li a {
+    text-decoration: none;
+    color: #cbd5e1;
+}
+
+.footer-box ul li:hover,
+.footer-box ul li a:hover {
+    color: #38bdf8;
+    padding-left: 5px;
+}
+
+.footer-box i {
+    margin-right: 8px;
+    color: #2e4c59;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin-right: 12px;
+    background: #87a6d6;
+    color: #38bdf8;
+    padding: 10px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #38bdf8;
+    color: #fff;
+    transform: translateY(-4px);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #334155;
+    padding-top: 20px;
+    color: #94a3b8;
+    font-size: 14px;
+}
+</style>

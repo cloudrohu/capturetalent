@@ -19,6 +19,14 @@
 .nav-link.active::after {
     width: 100%;
 }
+::selection {
+    background: #111;
+    color: #d4af37;
+}
+::-moz-selection {
+    background: #d4af37;
+    color: rgb(255, 255, 255);
+}
 </style>
 
 <!-- ======= Top Contact Bar ======= -->
@@ -29,14 +37,14 @@
             <div class="flex items-center space-x-6">
                 <span class="flex items-center space-x-2">
                     <i class="fas fa-phone-alt text-yellow-400"></i>
-                    <span>+91 9898 03 4466</span>
+                    <span>+91 {{site_setting.phone}}</span>
                 </span>
 
                 <span class="h-4 w-px bg-gray-600"></span>
 
                 <span class="flex items-center space-x-2">
                     <i class="fas fa-envelope text-yellow-400"></i>
-                    <span>info@cloudrohu.com</span>
+                    <span>{{site_setting.email}}</span>
                 </span>
             </div>
 
@@ -69,33 +77,57 @@
             </div>
 
             <!-- Desktop Nav -->
-            <nav class="hidden md:flex items-center space-x-10 text-sm uppercase tracking-wider relative">
-                
-                <a href="/" class="nav-link {% if request.path == '/' %}active text-[#d4af37]{% endif %}">Home</a>
-                <a href="{% url 'home:about' %}" class="nav-link {% if request.path == '/about/' %}active text-[#d4af37]{% endif %}">About</a>
-                <a href="#" class="nav-link hover:text-[#d4af37]">Highlights</a>
-                <a href="#" class="nav-link hover:text-[#d4af37]">Enquiry</a>
+            <nav class="hidden md:flex items-center text-sm uppercase tracking-wider relative">
 
-                <!-- Dropdown -->
-                <div class="relative">
-                    <button id="projectBtn" class="nav-link hover:text-[#d4af37] flex items-center gap-2">
-                        Project
-                        <i class="fa-solid fa-chevron-down text-xs"></i>
-                    </button>
+                <div class="flex items-center space-x-8">
+                    <a href="/" class="nav-link {% if request.path == '/' %}active text-[#d4af37]{% endif %}">
+                        Home
+                    </a>
 
-                    <div id="projectMenu" class="absolute left-0 mt-4 w-56 bg-[#111] border border-[#333] shadow-xl hidden">
-                        <a href="#" class="block px-6 py-3 hover:bg-[#d4af37] hover:text-black transition">
-                            Ongoing Projects
-                        </a>
-                          <hr class="border border-white h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent">
-                        <a href="#" class="block px-6 py-3 hover:bg-[#d4af37] hover:text-black transition">
-                            Completed Projects
-                        </a>
+                    <a href="{% url "home:about" %}"  class="nav-link {% if request.path == '/about/' %}active text-[#d4af37]{% endif %}">
+                        About
+                    </a>
+
+                    <a href="{% url "home:portfolio" %}" class="nav-link hover:text-[#d4af37]">
+                        Portfolio
+                    </a>
+
+                    <a href="#" class="nav-link hover:text-[#d4af37]">
+                        Enquiry
+                    </a>
+
+                    <!-- Dropdown -->
+                    <div class="relative">
+                        <button id="projectBtn" class="nav-link hover:text-[#d4af37] flex items-center gap-2">
+                            Project
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+
+                        <div id="projectMenu" 
+                            class="absolute left-0 mt-4 w-56 bg-[#111] border border-[#333] shadow-xl hidden">
+                            
+                            <a href="#" class="block px-6 py-3 hover:bg-[#d4af37] hover:text-black transition">
+                                Ongoing Projects
+                            </a>
+
+                            <hr class="border border-white h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent">
+
+                            <a href="#" class="block px-6 py-3 hover:bg-[#d4af37] hover:text-black transition">
+                                Completed Projects
+                            </a>
+                        </div>
                     </div>
-                    
+
+                    <a href="{% url 'home:contact' %}" class="nav-link hover:text-[#d4af37]">
+                        Contact
+                    </a>
                 </div>
 
-                <a href="{% url 'home:contact' %}" class="nav-link hover:text-[#d4af37]">Contact</a>
+                <!-- CTA Button Separate -->
+                <a href="#" class="ml-10 px-6 py-2 border border-[#d4af37] text-[#d4af37] text-xs font-semibold tracking-widest rounded-md hover:bg-[#d4af37] hover:text-White transition duration-300">
+                    JOIN NOW
+                </a>
+
             </nav>
 
             <!-- Mobile Button -->
@@ -107,30 +139,65 @@
     </div>
 </header>
 
-<!--  ======= 🚀 Drawer ======= -->
-<div id="drawer" class="fixed top-0 right-0 h-full w-72 bg-[#111] border-l border-[#333] transform translate-x-full transition duration-300 z-50 p-6">
+<!--  ======= Drawer ======= -->
+<div id="drawer" class="fixed top-0 right-0 h-full w-80 bg-[#111] border-l border-[#333] transform translate-x-full transition duration-300 z-50 p-6">
 
-    <div class="flex justify-between items-center mb-8">
-        <img src="{{ site_setting.logo.url }}" alt="Logo" class="h-10">
+    <div class="flex justify-between items-center mb-10 border-b border-gray-700 pb-4">
+        <div class="flex items-center gap-3">
+            <img src="{{ site_setting.logo.url }}" alt="Logo" class="h-14 rounded-md">
+            <h1 class="text-white font-semibold dancing-font text-lg tracking-wide">
+                {{site_setting.site_name}}
+            </h1>
+        </div>
         <button id="closeDrawer" class="text-xl text-white">
             <i class="fa-solid fa-xmark"></i>
         </button>
     </div>
+    <div class="flex flex-col space-y-6 text-gray-300 uppercase text-sm font-semibold tracking-wide">
 
-    <div class="flex flex-col space-y-6 text-gray-300 uppercase text-sm">
-        <a href="#" class="hover:text-[#d4af37]">Home</a>
-        <a href="#" class="hover:text-[#d4af37]">About</a>
-        <a href="#" class="hover:text-[#d4af37]">Highlights</a>
-        <a href="#" class="hover:text-[#d4af37]">Enquiry</a>
+        <a href="/" class="flex items-center gap-3 hover:text-[#d4af37] transition">
+            <i class="fa-solid fa-house w-5"></i>
+            Home
+        </a>
 
-        <div>
-            <p class="text-[#d4af37] mb-2">Project</p>
-            <a href="#" class="block pl-4 py-1 hover:text-[#d4af37]">Ongoing Projects</a>
-            <a href="#" class="block pl-4 py-1 hover:text-[#d4af37]">Completed Projects</a>
+        <a href="{% url 'home:about' %}" class="flex items-center gap-3 hover:text-[#d4af37] transition">
+            <i class="fa-solid fa-circle-info w-5"></i>
+            About
+        </a>
+
+        <a href="{% url 'home:portfolio' %}" class="flex items-center gap-3 hover:text-[#d4af37] transition">
+            <i class="fa-solid fa-briefcase w-5"></i>
+            Portfolio
+        </a>
+
+        <!-- Project Section -->
+        <div class="border-t border-gray-700 pt-4">
+            <p class="text-[#d4af37] mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-building"></i>
+                Projects
+            </p>
+
+            <a href="#" class="block pl-7 py-1 hover:text-[#d4af37] transition">
+                Ongoing Projects
+            </a>
+
+            <a href="#" class="block pl-7 py-1 hover:text-[#d4af37] transition">
+                Completed Projects
+            </a>
         </div>
 
-        <a href="#" class="hover:text-[#d4af37]">Contact</a>
+        <a href="{% url 'home:contact' %}" class="flex items-center gap-3 hover:text-[#d4af37] transition">
+            <i class="fa-solid fa-phone w-5"></i>
+            Contact
+        </a>
+
+        <!-- CTA Button -->
+        <a href="#" class="mt-4 text-center border border-[#d4af37] text-[#d4af37] py-2 rounded-md hover:bg-[#d4af37] hover:text-black transition">
+            JOIN NOW
+        </a>
+
     </div>
+
 </div>
 
 <div id="overlay" class="fixed inset-0 bg-black bg-opacity-70 hidden z-40"></div>

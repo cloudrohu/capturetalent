@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ site_setting.site_name }} | On Going Project{% endblock %}
+{% block content %}
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+<!-- PAGE HERO -->
+<section class="bg-gray-900 text-white py-20 text-center">
+
+    <h1 class="text-4xl md:text-5xl font-bold">
+        On Going Projects
+    </h1>
+
+    <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
+        Explore the innovative projects our team is currently working on.
+        We focus on creativity, technology, and impactful solutions.
+    </p>
+
+</section>
+
+
+
+<!-- PROJECT LIST -->
+<section class="py-16 bg-gray-50">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+            <!-- PROJECT CARD -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+
+                <img src="{% static 'images/project1.jpg' %}" class="w-full h-56 object-cover">
+
+                <div class="p-6">
+
+                    <span class="text-sm text-blue-600 font-semibold">
+                        Web Development
+                    </span>
+
+                    <h3 class="text-xl font-bold mt-2">
+                        Talent Hiring Platform
+                    </h3>
+
+                    <p class="text-gray-600 mt-3 text-sm">
+                        A modern hiring platform designed to connect companies
+                        with top creative and technical talent.
+                    </p>
+
+                    <a href="#" class="inline-block mt-5 text-blue-600 font-semibold hover:underline">
+                        View Project →
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- PROJECT CARD -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+
+                <img src="{% static 'images/project2.jpg' %}" class="w-full h-56 object-cover">
+
+                <div class="p-6">
+
+                    <span class="text-sm text-purple-600 font-semibold">
+                        Branding
+                    </span>
+
+                    <h3 class="text-xl font-bold mt-2">
+                        Creative Portfolio Builder
+                    </h3>
+
+                    <p class="text-gray-600 mt-3 text-sm">
+                        A digital platform helping designers and developers
+                        showcase their work professionally.
+                    </p>
+
+                    <a href="#" class="inline-block mt-5 text-purple-600 font-semibold hover:underline">
+                        View Project →
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- PROJECT CARD -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+
+                <img src="{% static 'images/project3.jpg' %}" class="w-full h-56 object-cover">
+
+                <div class="p-6">
+
+                    <span class="text-sm text-green-600 font-semibold">
+                        Marketing
+                    </span>
+
+                    <h3 class="text-xl font-bold mt-2">
+                        Digital Campaign System
+                    </h3>
+
+                    <p class="text-gray-600 mt-3 text-sm">
+                        A smart campaign management system designed to
+                        automate marketing workflows.
+                    </p>
+
+                    <a href="#" class="inline-block mt-5 text-green-600 font-semibold hover:underline">
+                        View Project →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

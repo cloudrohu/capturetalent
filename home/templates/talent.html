@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- ============== HERO START HERE ============== -->
+<section class="bg-black py-20 text-center">
+    <h1 class="text-4xl font-bold text-[#d4af37] mb-4">Join Our Talent Network</h1>
+    <p class="text-gray-400 max-w-2xl mx-auto">
+        Discover opportunities and showcase your talent. Upload your portfolio and become part of our growing community.
+    </p>
+</section>
+<!-- ============== HERO END HERE ============== -->
+
+<!-- ============== TALENT CATEGORY START HERE ============== -->
+<section class="bg-black text-white py-20">
+<div class="max-w-7xl mx-auto px-4">
+
+<!-- Hero -->
+<div class="text-center mb-16">
+<h1 class="text-4xl font-bold text-[#d4af37] mb-4">
+Join Our Talent Network
+</h1>
+<p class="text-gray-400 max-w-2xl mx-auto">
+Showcase your talent and connect with brands, agencies, and exciting opportunities.
+</p>
+</div>
+
+<!-- Talent Categories -->
+<div class="grid md:grid-cols-4 gap-6 mb-20">
+
+<div class="bg-[#111] p-6 text-center border border-gray-700 hover:border-[#d4af37] transition">
+<i class="fa-solid fa-user text-3xl text-[#d4af37] mb-4"></i>
+<h3 class="font-semibold">Actors</h3>
+</div>
+
+<div class="bg-[#111] p-6 text-center border border-gray-700 hover:border-[#d4af37] transition">
+<i class="fa-solid fa-camera text-3xl text-[#d4af37] mb-4"></i>
+<h3 class="font-semibold">Models</h3>
+</div>
+
+<div class="bg-[#111] p-6 text-center border border-gray-700 hover:border-[#d4af37] transition">
+<i class="fa-solid fa-microphone text-3xl text-[#d4af37] mb-4"></i>
+<h3 class="font-semibold">Influencers</h3>
+</div>
+
+<div class="bg-[#111] p-6 text-center border border-gray-700 hover:border-[#d4af37] transition">
+<i class="fa-solid fa-video text-3xl text-[#d4af37] mb-4"></i>
+<h3 class="font-semibold">Content Creators</h3>
+</div>
+
+</div>
+
+<!-- Featured Talent -->
+<h2 class="text-3xl font-bold text-center mb-12">
+Featured Talent
+</h2>
+
+<div class="grid md:grid-cols-3 gap-8 mb-20">
+
+<div class="bg-[#111] border border-gray-700 rounded-lg overflow-hidden">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" class="w-full h-64 object-cover">
+<div class="p-5">
+<h3 class="font-semibold">Ananya Sharma</h3>
+<p class="text-gray-400 text-sm">Fashion Model</p>
+</div>
+</div>
+
+<div class="bg-[#111] border border-gray-700 rounded-lg overflow-hidden">
+<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" class="w-full h-64 object-cover">
+<div class="p-5">
+<h3 class="font-semibold">Rohit Mehta</h3>
+<p class="text-gray-400 text-sm">Content Creator</p>
+</div>
+</div>
+
+<div class="bg-[#111] border border-gray-700 rounded-lg overflow-hidden">
+<img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb" class="w-full h-64 object-cover">
+<div class="p-5">
+<h3 class="font-semibold">Priya Kapoor</h3>
+<p class="text-gray-400 text-sm">Influencer</p>
+</div>
+</div>
+
+</div>
+
+<!-- Join Talent Form -->
+
+<h2 class="text-3xl font-bold text-center mb-10">
+Join As Talent
+</h2>
+
+<form class="max-w-3xl mx-auto grid md:grid-cols-2 gap-6">
+
+<input type="text" placeholder="Full Name"
+class="bg-[#111] border border-gray-700 p-3 rounded">
+
+<input type="email" placeholder="Email Address"
+class="bg-[#111] border border-gray-700 p-3 rounded">
+
+<input type="text" placeholder="Phone Number"
+class="bg-[#111] border border-gray-700 p-3 rounded">
+
+<select class="bg-[#111] border border-gray-700 p-3 rounded">
+<option>Select Talent Category</option>
+<option>Actor</option>
+<option>Model</option>
+<option>Influencer</option>
+<option>Content Creator</option>
+</select>
+
+<input type="file"
+class="bg-[#111] border border-gray-700 p-3 rounded md:col-span-2">
+
+<button class="bg-[#d4af37] text-black py-3 rounded font-semibold md:col-span-2 hover:opacity-90">
+Submit Application
+</button>
+
+</form>
+
+</div>
+</section>
+<!-- ============== TALENT CATEGORY END HERE ============== -->
+
+<!-- ============== CTA CONTACT START HERE ============== -->
+<section class="bg-red-500 text-white py-20 text-center">
+
+    <h2 class="text-3xl font-bold">
+      Ready to Showcase Your Talent?
+    </h2>
+
+    <p class="mt-4">
+     Join our platform and connect with a growing creative community.
+    </p>
+
+    <button class="mt-6 bg-white text-red-500 px-8 py-3 rounded-lg font-semibold">
+        Join Now
+    </button>
+
+</section>
+<!-- ============== CTA CONTACT END HERE ============== -->
+
+{% endblock content %}
