@@ -5,7 +5,6 @@ from .models import *
 
 def ongoing_projects(request):
 
-
     site_setting = SiteSetting.objects.order_by('-id').first()
     projects = OngoingProject.objects.select_related('category').all()
 
@@ -16,3 +15,17 @@ def ongoing_projects(request):
     }
 
     return render(request, "projects/on-going.html",context)
+
+def complete_projects(request):
+
+
+    site_setting = SiteSetting.objects.order_by('-id').first()
+    completeprojects = OngoingProject.objects.select_related('category').all()
+
+    
+    context = {
+        'site_setting': site_setting,
+        "completeprojects": completeprojects
+    }
+
+    return render(request, "projects/complete.html",context)

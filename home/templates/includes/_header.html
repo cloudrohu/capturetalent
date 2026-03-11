@@ -71,7 +71,6 @@
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center py-2">
 
-            <!-- Logo Image -->
             <div>
                 <img src="{{ site_setting.logo.url }}" alt="Logo" class="h-12">
             </div>
@@ -89,11 +88,7 @@
                     </a>
 
                     <a href="{% url "home:portfolio" %}" class="nav-link hover:text-[#d4af37]">
-                        Portfolio
-                    </a>
-
-                    <a href="#" class="nav-link hover:text-[#d4af37]">
-                        Enquiry
+                        Talent
                     </a>
 
                     <!-- Dropdown -->
@@ -103,10 +98,9 @@
                             <i class="fa-solid fa-chevron-down text-xs"></i>
                         </button>
 
-                        <div id="projectMenu" 
-                            class="absolute left-0 mt-4 w-56 bg-[#111] border border-[#333] shadow-xl hidden">
+                        <div id="projectMenu" class="absolute left-0 mt-4 w-56 bg-[#111] border border-[#333] shadow-xl hidden">
                             
-                            <a href="#" class="block px-6 py-3 hover:bg-[#d4af37] hover:text-black transition">
+                            <a href="{% url 'projects:ongoing' %}" class="block px-6 py-3 hover:bg-[#d4af37] hover:text-black transition">
                                 Ongoing Projects
                             </a>
 
@@ -115,6 +109,7 @@
                             <a href="#" class="block px-6 py-3 hover:bg-[#d4af37] hover:text-black transition">
                                 Completed Projects
                             </a>
+                            
                         </div>
                     </div>
 
@@ -140,67 +135,90 @@
 </header>
 
 <!--  ======= Drawer ======= -->
-<div id="drawer" class="fixed top-0 right-0 h-full w-80 bg-[#111] border-l border-[#333] transform translate-x-full transition duration-300 z-50 p-6">
+<div id="drawer" class="fixed top-0 right-0 h-full w-80 bg-[#0f0f0f]/95 backdrop-blur-lg border-l border-gray-700 shadow-2xl transform translate-x-full transition-all duration-300 ease-in-out z-50 flex flex-col">
 
-    <div class="flex justify-between items-center mb-10 border-b border-gray-700 pb-4">
+    <!-- HEADER -->
+    <div class="flex items-center justify-between p-5 border-b border-gray-700">
+
         <div class="flex items-center gap-3">
-            <img src="{{ site_setting.logo.url }}" alt="Logo" class="h-14 rounded-md">
-            <h1 class="text-white font-semibold dancing-font text-lg tracking-wide">
-                {{site_setting.site_name}}
-            </h1>
+            <img src="{{ site_setting.logo.url }}" class="h-12 rounded-md">
+            <span class="text-white text-lg font-semibold tracking-wide">
+                {{ site_setting.site_name }}
+            </span>
         </div>
-        <button id="closeDrawer" class="text-xl text-white">
-            <i class="fa-solid fa-xmark"></i>
+
+        <button id="closeDrawer" class="text-gray-300 hover:text-white text-xl transition">
+        <i class="fa-solid fa-xmark"></i>
         </button>
+
     </div>
-    <div class="flex flex-col space-y-6 text-gray-300 uppercase text-sm font-semibold tracking-wide">
+
+    <!-- NAVIGATION -->
+    <div class="flex flex-col px-6 py-8 space-y-6 text-gray-300 text-sm font-medium uppercase tracking-wider">
 
         <a href="/" class="flex items-center gap-3 hover:text-[#d4af37] transition">
-            <i class="fa-solid fa-house w-5"></i>
+            <i class="fa-solid fa-house"></i>
             Home
         </a>
 
         <a href="{% url 'home:about' %}" class="flex items-center gap-3 hover:text-[#d4af37] transition">
-            <i class="fa-solid fa-circle-info w-5"></i>
+            <i class="fa-solid fa-circle-info"></i>
             About
         </a>
 
         <a href="{% url 'home:portfolio' %}" class="flex items-center gap-3 hover:text-[#d4af37] transition">
-            <i class="fa-solid fa-briefcase w-5"></i>
-            Portfolio
+            <i class="fa-solid fa-briefcase"></i>
+            Talent
         </a>
 
-        <!-- Project Section -->
-        <div class="border-t border-gray-700 pt-4">
-            <p class="text-[#d4af37] mb-3 flex items-center gap-2">
-                <i class="fa-solid fa-building"></i>
-                Projects
+
+        <!-- PROJECTS -->
+        <div class="border-t border-gray-700 pt-5">
+
+            <p class="text-[#d4af37] text-xs mb-4 tracking-widest">
+                PROJECTS
             </p>
 
-            <a href="#" class="block pl-7 py-1 hover:text-[#d4af37] transition">
-                Ongoing Projects
-            </a>
+            <div class="flex flex-col space-y-3 pl-3">
 
-            <a href="#" class="block pl-7 py-1 hover:text-[#d4af37] transition">
+                <a href="{% url 'projects:ongoing' %}"
+                class="hover:text-[#d4af37] transition">
+                Ongoing Projects
+                </a>
+
+                <a href="{% url 'projects:complete' %}"
+                class="hover:text-[#d4af37] transition">
                 Completed Projects
-            </a>
+                </a>
+
+            </div>
+
         </div>
 
+
         <a href="{% url 'home:contact' %}" class="flex items-center gap-3 hover:text-[#d4af37] transition">
-            <i class="fa-solid fa-phone w-5"></i>
+            <i class="fa-solid fa-phone"></i>
             Contact
         </a>
 
-        <!-- CTA Button -->
-        <a href="#" class="mt-4 text-center border border-[#d4af37] text-[#d4af37] py-2 rounded-md hover:bg-[#d4af37] hover:text-black transition">
-            JOIN NOW
+
+        <!-- JOIN BUTTON -->
+        <a href="{% url 'home:join-center' %}" class="mt-6 text-center bg-[#d4af37] text-black font-semibold py-3 rounded-lg hover:bg-[#c19d2f] transition">
+         Join Now
         </a>
 
     </div>
 
+    <!-- FOOTER -->
+    <div class="mt-auto p-6 border-t border-gray-700 text-xs text-gray-400 text-center">
+        © {{ site_setting.site_name }}
+    </div>
+
 </div>
 
-<div id="overlay" class="fixed inset-0 bg-black bg-opacity-70 hidden z-40"></div>
+
+<!-- Overlay -->
+<div id="overlay" class="fixed inset-0 bg-black/70 hidden z-40 transition-opacity duration-300"></div>
 <!-- ================== MAIN HEADER END ================== -->
 
 <script>

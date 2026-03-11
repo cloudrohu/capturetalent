@@ -1,11 +1,12 @@
 from django.urls import path
-from .views import (
+from home.views import (
     HomeView,
     AboutView,
     Talent,
     Portfolio,
     ContactView,
-    ThankYouView
+    ThankYouView,
+    JoinNowView
 )
 
 app_name = 'home'
@@ -17,7 +18,9 @@ urlpatterns = [
     path('talent/',Talent.as_view(), name='talent'),
     path('portfolio/',Portfolio.as_view(), name='portfolio'),
     path('contact/', ContactView.as_view(), name='contact'),
-    path('thank-you/', ThankYouView.as_view(), name='thank-you'),
-
+    path('contact/', JoinNowView.as_view(), name='contact'),
+    path('join-center/', JoinNowView.as_view(), name='join-center'),
+    path("join-success/", ThankYouView.as_view(), name="join-success"),
+    
 
 ]

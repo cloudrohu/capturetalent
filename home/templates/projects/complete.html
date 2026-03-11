@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ site_setting.site_name }} | On Going Project{% endblock %}
+{% block content %}
+
+
+<!-- PAGE HERO -->
+<section class="bg-gray-900 text-white py-20 text-center">
+
+    <h1 class="text-4xl md:text-5xl font-bold">
+        Completed Projects
+    </h1>
+
+    <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
+        Explore the innovative projects our team is currently working on.
+        We focus on creativity, technology, and impactful solutions.
+    </p>
+
+</section>
+<!-- PAGE HERO END -->
+
+<!-- PROJECT LIST -->
+{% if completeprojects %}
+<section class="py-16 bg-gray-50">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+            {% for project in completeprojects %}
+
+            <!-- PROJECT CARD -->
+            <div class="bg-white -xl shadow-md overflow-hidden hover:shadow-xl transition">
+
+                <img src="{{ project.image.url }}" class="w-full h-56 object-cover">
+
+                <div class="p-6">
+
+                    <span class="text-sm text-blue-600 font-semibold">
+                        {{ project.category.name }}
+                    </span>
+
+                    <h3 class="text-xl font-bold mt-2">
+                        {{ project.title }}
+                    </h3>
+
+                    <p class="text-gray-600 mt-3 text-sm">
+                        {{ project.description|truncatewords:18 }}
+                    </p>
+
+                    <a href="javascript:void(0)" class="openProject text-blue-600 font-semibold" data-title="{{ project.title }}" data-category="{{ project.category.name }}" data-image="{{ project.image.url }}" data-desc="{{ project.description }}">
+                        View Project →
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+{% else %}
+<div class="text-center py-20">
+    <h2 class="text-2xl font-semibold text-gray-500">
+        No Completed Projects Available
+    </h2>
+</div>
+{% endif %}
+<!-- PROJECT LIST END-->
+
+
+
+<!-- PROJECT POPUP -->
+<div id="projectModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
+
+    <div class="bg-white max-w-3xl w-full shadow-xl overflow-hidden relative">
+
+        <!-- CLOSE -->
+       <button id="closeModal"
+            class="absolute top-3 right-3 text-gray-700 text-xl border rounded-full p-2 hover:bg-gray-100 transition">
+            ✕
+        </button>
+
+        <!-- IMAGE -->
+        <img id="modalImage" class="w-full h-64 object-cover">
+
+        <div class="p-6">
+
+            <!-- CATEGORY -->
+            <span id="modalCategory" class="text-sm text-blue-600 font-semibold"></span>
+
+            <!-- TITLE -->
+            <h3 id="modalTitle" class="text-2xl font-bold mt-2"></h3>
+
+            <!-- DESCRIPTION -->
+            <p id="modalDesc" class="text-gray-600 mt-3"></p>
+
+            <!-- APPLY BUTTON -->
+            <a id="modalLink" href="{% url "home:contact" %}" class="inline-block mt-6 bg-blue-600 text-white px-6 py-2 -lg hover:bg-blue-700">
+                Apply Now
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- PROJECT POPUP END -->
+
+
+
+<script>
+
+    const modal = document.getElementById("projectModal")
+
+    document.querySelectorAll(".openProject").forEach(btn => {
+
+        btn.addEventListener("click", function(){
+
+        document.getElementById("modalTitle").innerText = this.dataset.title
+        document.getElementById("modalCategory").innerText = this.dataset.category
+        document.getElementById("modalDesc").innerText = this.dataset.desc
+        document.getElementById("modalImage").src = this.dataset.image
+
+        modal.classList.remove("hidden")
+        modal.classList.add("flex")
+
+        })
+
+    })
+
+    document.getElementById("closeModal").onclick = () =>{
+        modal.classList.add("hidden")
+        modal.classList.remove("flex")
+    }
+
+</script>
+
+{% endblock %}

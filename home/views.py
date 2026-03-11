@@ -14,7 +14,9 @@ from .models import (
     BenefitSection,
     Services,
     FAQs,
-    ContactMessage
+    ContactMessage,
+    Experience,
+    JoinApplication
 )
 
 class HomeView(View):
@@ -93,7 +95,6 @@ class Portfolio(View):
 
         return render(request, self.template_name, context)
 
-
 class ContactView(View):
     def get(self, request):
         return render(request, 'contact.html', {'site_setting': SiteSetting.objects.last()})
@@ -113,3 +114,34 @@ class ThankYouView(View):
     def get(self, request):
         return render(request, 'thank-you.html', {'site_setting': SiteSetting.objects.last()})
 
+
+class JoinNowView(View):
+    template_name = "join.html"
+
+    def get(self, request):
+
+        site_setting = SiteSetting.objects.last()
+        talents = TalentCategory.objects.filter(is_active=True)
+        experiences = Experience.objects.all()
+
+        context = {
+            "site_setting": site_setting,
+            "talents": talents,
+            "experiences": experiences
+        }
+
+        return render(request, self.template_name, context)
+
+
+    def post(self, request):
+
+        JoinApplication.objects.create(
+            name=request.POST.get("name"),
+            phone=request.POST.get("phone"),
+            email=request.POST.get("email"),
+            talent_id=request.POST.get("talent"),
+            experience_id=request.POST.get("experience"),
+            message=request.POST.get("message")
+        )
+
+        return redirect("home:join-success")

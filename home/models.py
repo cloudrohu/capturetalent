@@ -89,6 +89,8 @@ class OurArties(models.Model):
 
     def __str__(self):
         return self.title
+
+
 # TALENT CETEGOY END HERE    
 
 # ABOUT START HERE
@@ -254,3 +256,30 @@ class ContactMessage(models.Model):
     def __str__(self):
         return self.name
 # CONTACT END HERE
+
+# Experiance START HERE
+class Experience(models.Model):
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+# Experiance END HERE
+    
+# JOIN START HERE
+class JoinApplication(models.Model):
+
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+
+    talent = models.ForeignKey(TalentCategory, on_delete=models.CASCADE)
+    experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
+
+    message = models.TextField(blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name    
+# JOIN END HERE
+    

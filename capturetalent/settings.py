@@ -21,8 +21,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'tailwind',
     'jazzmin',
+    'tailwind',
     'mptt',
     'ckeditor',
     'ckeditor_uploader',
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'home',
     'projects',
 ]
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "solar"
+}
 
 TAILWIND_APP_NAME = 'theme'
 

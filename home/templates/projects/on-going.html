@@ -30,7 +30,7 @@
             {% for project in projects %}
 
             <!-- PROJECT CARD -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+            <div class="bg-white -xl shadow-md overflow-hidden hover:shadow-xl transition">
 
                 <img src="{{ project.image.url }}" class="w-full h-56 object-cover">
 
@@ -48,7 +48,7 @@
                         {{ project.description|truncatewords:18 }}
                     </p>
 
-                    <a href="javascript:void(0)" class="openProject text-blue-600 font-semibold" data-title="{{ project.title }}" data-category="{{ project.category.name }}" data-desc="{{ project.description }}" data-image="{{ project.image.url }}" data-location="{{ project.location }}" data-role="{{ project.role }}" data-budget="{{ project.budget }}" data-deadline="{{ project.deadline }}" data-type="{{ project.project_type }}" data-production="{{ project.production }}">
+                    <a href="javascript:void(0)" class="openProject text-blue-600 font-semibold" data-title="{{ project.title }}" data-category="{{ project.category.name }}" data-image="{{ project.image.url }}" data-desc="{{ project.description }}">
                         View Project →
                     </a>
 
@@ -77,11 +77,12 @@
 <!-- PROJECT POPUP -->
 <div id="projectModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
 
-    <div class="bg-white max-w-3xl w-full rounded-xl shadow-xl overflow-hidden relative">
+    <div class="bg-white max-w-3xl w-full shadow-xl overflow-hidden relative">
 
         <!-- CLOSE -->
-        <button id="closeModal" class="absolute top-4 right-4 text-gray-600 text-2xl">
-        ✕
+       <button id="closeModal"
+            class="absolute top-3 right-3 text-gray-700 text-xl border rounded-full p-2 hover:bg-gray-100 transition">
+            ✕
         </button>
 
         <!-- IMAGE -->
@@ -98,43 +99,8 @@
             <!-- DESCRIPTION -->
             <p id="modalDesc" class="text-gray-600 mt-3"></p>
 
-            <!-- EXTRA DETAILS -->
-            <div class="grid grid-cols-2 gap-4 mt-6 text-sm">
-
-                <div>
-                    <strong>Location:</strong>
-                    <span id="modalLocation"></span>
-                </div>
-
-                <div>
-                    <strong>Role Required:</strong>
-                    <span id="modalRole"></span>
-                </div>
-
-                <div>
-                    <strong>Budget:</strong>
-                    <span id="modalBudget"></span>
-                </div>
-
-                <div>
-                    <strong>Deadline:</strong>
-                    <span id="modalDeadline"></span>
-                </div>
-
-                <div>
-                    <strong>Project Type:</strong>
-                    <span id="modalType"></span>
-                </div>
-
-                <div>
-                    <strong>Production:</strong>
-                    <span id="modalProduction"></span>
-                </div>
-
-            </div>
-
             <!-- APPLY BUTTON -->
-            <a id="modalLink" class="inline-block mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+            <a id="modalLink" href="{% url "home:contact" %}" class="inline-block mt-6 bg-blue-600 text-white px-6 py-2 -lg hover:bg-blue-700">
                 Apply Now
             </a>
 
@@ -159,13 +125,6 @@
         document.getElementById("modalCategory").innerText = this.dataset.category
         document.getElementById("modalDesc").innerText = this.dataset.desc
         document.getElementById("modalImage").src = this.dataset.image
-
-        document.getElementById("modalLocation").innerText = this.dataset.location
-        document.getElementById("modalRole").innerText = this.dataset.role
-        document.getElementById("modalBudget").innerText = this.dataset.budget
-        document.getElementById("modalDeadline").innerText = this.dataset.deadline
-        document.getElementById("modalType").innerText = this.dataset.type
-        document.getElementById("modalProduction").innerText = this.dataset.production
 
         modal.classList.remove("hidden")
         modal.classList.add("flex")

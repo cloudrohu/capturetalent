@@ -5,6 +5,9 @@ from .models import *
 from django.utils.html import format_html
 
 
+admin.site.register(Experience)
+admin.site.register(JoinApplication)
+
 @admin.register(SiteSetting)
 class SiteSettingAdmin(admin.ModelAdmin):
     list_display = ('site_name', 'updated_on')
@@ -147,7 +150,6 @@ class FAQsAdmin(admin.ModelAdmin):
 class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ("name","phone")
     search_fields = ("name","phone")
-
 
 
 # End of admin.py
